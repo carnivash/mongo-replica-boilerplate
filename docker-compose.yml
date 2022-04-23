@@ -6,7 +6,6 @@ services:
         restart: always
         container_name: mongodb1
         volumes:
-        - ./users.js:/docker-entrypoint-initdb.d/001_users.js:ro
         - mongodata1:/data/db
         expose:
         - "27017"
@@ -23,7 +22,6 @@ services:
         restart: always
         container_name: mongodb2
         volumes:
-        - ./users.js:/docker-entrypoint-initdb.d/001_users.js:ro
         - mongodata2:/data/db
         expose:
         - "27017"
@@ -40,7 +38,6 @@ services:
         restart: always
         container_name: mongodb3
         volumes:
-        - ./users.js:/docker-entrypoint-initdb.d/001_users.js:ro
         - mongodata3:/data/db
         expose:
         - "27017"
