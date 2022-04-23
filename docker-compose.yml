@@ -54,6 +54,8 @@ services:
             - mongodb1
         volumes:
             - mongostatus:/data/
+        networks:
+            - captain-overlay-network
     
 
 volumes:
