@@ -2,7 +2,7 @@ version: '3'
 
 services:
     mongodb1:
-        image: mongo:4
+        image: mongo:latest
         restart: always
         container_name: mongodb1
         volumes:
@@ -10,9 +10,14 @@ services:
         expose:
         - "27017"
         entrypoint: [ "/usr/bin/mongod", "--replSet", "rsmongo", "--bind_ip_all", "--wiredTigerCacheSizeGB", "1"]
+        environment:
+            - MONGO_INITDB_ROOT_USERNAME=root
+            - MONGO_INITDB_ROOT_PASSWORD=proj2501
+        networks:
+            - captain-overlay-network
 
     mongodb2:
-        image: mongo:4
+        image: mongo:latest
         restart: always
         container_name: mongodb2
         volumes:
@@ -20,9 +25,14 @@ services:
         expose:
         - "27017"
         entrypoint: [ "/usr/bin/mongod", "--replSet", "rsmongo", "--bind_ip_all", "--wiredTigerCacheSizeGB", "1"]
+        environment:
+            - MONGO_INITDB_ROOT_USERNAME=root
+            - MONGO_INITDB_ROOT_PASSWORD=proj2501
+        networks:
+            - captain-overlay-network
       
     mongodb3:
-        image: mongo:4
+        image: mongo:latest
         restart: always
         container_name: mongodb3
         volumes:
@@ -30,6 +40,11 @@ services:
         expose:
         - "27017"
         entrypoint: [ "/usr/bin/mongod", "--replSet", "rsmongo", "--bind_ip_all", "--wiredTigerCacheSizeGB", "1" ]
+        environment:
+            - MONGO_INITDB_ROOT_USERNAME=root
+            - MONGO_INITDB_ROOT_PASSWORD=proj2501
+        networks:
+            - captain-overlay-network
     
     mongosetup:
         image: "mongo-setup"
@@ -46,3 +61,7 @@ volumes:
     mongodata2:
     mongodata3:
     mongostatus:
+
+networks:
+  captain-overlay-network:
+    external: true
